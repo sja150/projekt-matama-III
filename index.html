@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaawansowana Matematyka Finansowa: Ciągi i Giełda</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#020617',
+                            light: '#0f172a',
+                            accent: '#10b981',
+                            warning: '#f59e0b',
+                            danger: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- MathJax for Mathematical Formulas -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .math-box {
+            background: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/5 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <span class="font-bold text-xl tracking-tight text-brand-accent">Logos<span class="text-white">Finance</span></span>
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#teoria" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Teoria Matematyczna</a>
+                        <a href="#kapitalizacja" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Kapitalizacja</a>
+                        <a href="#kalkulator" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Mega-Kalkulator</a>
+                        <a href="#wnioski" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Analiza Ryzyk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative pt-32 pb-20 overflow-hidden border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-brand-accent to-emerald-500">
+                Aksjomaty Zysku
+            </h1>
+            <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">
+                Analiza ciągów geometrycznych w środowisku rynkowym z uwzględnieniem podatku Belki, kosztów transakcyjnych (spread), finansowania (overnight/swap) oraz inflacji aktywów.
+            </p>
+        </div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent -z-10"></div>
+    </header>
+
+    <!-- Sekcja 1: Głębia Matematyczna -->
+    <section id="teoria" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold mb-8 flex items-center">
+                        <span class="w-8 h-8 bg-brand-accent text-dark rounded-full flex items-center justify-center text-sm mr-4">1</span>
+                        Formalizm Ciągów
+                    </h2>
+                    
+                    <div class="space-y-8 text-slate-300">
+                        <div>
+                            <h4 class="text-white font-bold mb-2">Definicja Ciągu Geometrycznego</h4>
+                            <p class="mb-4">Ciąg liczbowy \((a_n)\) nazywamy geometrycznym, jeżeli stosunek dwóch sąsiednich wyrazów jest stały:</p>
+                            <div class="math-box">
+                                $$\frac{a_{n+1}}{a_n} = q \implies a_n = a_1 \cdot q^{n-1}$$
+                            </div>
+                            <p class="text-sm italic">W finansach \(q = 1 + p\), gdzie \(p\) to stopa zwrotu.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-white font-bold mb-2">Suma Szeregu i Dopłaty</h4>
+                            <p class="mb-4">Jeśli inwestujemy regularnie, kapitał końcowy nie jest wyrazem ciągu, lecz sumą częściową szeregu geometrycznego:</p>
+                            <div class="math-box">
+                                $$S_n = a_1 \cdot \frac{1 - q^n}{1 - q}$$
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-white font-bold mb-2">Kapitalizacja Ciągła i Liczba Eulera</h4>
+                            <p class="mb-4">Gdyby okresy kapitalizacji dążyły do nieskończoności (\(m \to \infty\)), wzór na procent składany przechodzi w model ciągły:</p>
+                            <div class="math-box">
+                                $$\lim_{m \to \infty} K_0 \left(1 + \frac{p}{m}\right)^{mn} = K_0 \cdot e^{pn}$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-panel p-8 rounded-3xl border-brand-accent/20">
+                        <h3 class="text-xl font-bold text-brand-accent mb-4">Właściwości Funkcji Przyrostu</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Analizując pochodną funkcji kapitału \(K(t) = K_0 e^{pt}\), widzimy że \(K'(t) = p \cdot K(t)\). 
+                            Oznacza to, że szybkość wzrostu Twoich pieniędzy jest wprost proporcjonalna do ich obecnej ilości. 
+                            To właśnie to zjawisko nazywamy potocznie "procentem składanym". 
+                            Jednak matematyka finansowa musi uwzględnić "tarcie" (\(f\)), które odejmuje od \(p\) stałą wartość (koszty) lub zmienną (podatki).
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-6 shadow-2xl">
+                        <canvas id="theoryGraph" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja 2: Kapitalizacja i Podatki -->
+    <section id="kapitalizacja" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Matematyczna Przewaga Odroczenia Podatku</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">Model A: Podatek Odroczony (np. ETF)</h3>
+                    <p class="text-sm text-slate-400 mb-6">Podatek Belki (\(T=0.19\)) liczony jest na końcu od całkowitego zysku. Baza kapitalizacji nie jest naruszana przez lata.</p>
+                    <div class="bg-slate-950 p-4 rounded-xl text-center text-lg">
+                        $$K_{net} = K_0 + [K_0(1+p)^n - K_0] \cdot (1 - T)$$
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold text-red-400 mb-4">Model B: Podatek Bieżący (np. Lokata, CFD)</h3>
+                    <p class="text-sm text-slate-400 mb-6">Podatek Belki pobierany jest w każdym okresie kapitalizacji (\(n\)). Efektywne \(q\) maleje w każdym kroku.</p>
+                    <div class="bg-slate-950 p-4 rounded-xl text-center text-lg">
+                        $$K_{net} = K_0 \cdot [1 + p(1 - T)]^n$$
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja 3: MEGA-KALKULATOR -->
+    <section id="kalkulator" class="py-24">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4">Symulacja Wielowymiarowa</h2>
+            <p class="text-slate-400 mb-12">Porównaj dowolne instrumenty uwzględniając spready, koszty nocne (swap) oraz moment opodatkowania.</p>
+
+            <div class="grid lg:grid-cols-4 gap-8">
+                <!-- Panel Sterowania -->
+                <div class="lg:col-span-1 space-y-6 glass-panel p-6 rounded-2xl text-sm h-fit">
+                    <h4 class="font-bold border-b border-white/10 pb-2 mb-4">Parametry Globalne</h4>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Kapitał początkowy</label>
+                        <input type="number" id="mK0" value="10000" class="w-full bg-slate-900 border-none rounded p-2 focus:ring-1 ring-brand-accent">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 mb-1">Lata: <span id="mYearsVal" class="text-white font-bold">20</span></label>
+                        <input type="range" id="mYears" min="1" max="50" value="20" class="w-full accent-brand-accent">
+                    </div>
+                    
+                    <h4 class="font-bold border-b border-white/10 pb-2 pt-4 mb-4">Instrument 1: ETF (Odroczony)</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Zysk %</label>
+                            <input type="number" id="etfP" value="8.0" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Spread %</label>
+                            <input type="number" id="etfS" value="0.2" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                    </div>
+
+                    <h4 class="font-bold border-b border-white/10 pb-2 pt-4 mb-4">Instrument 2: CFD (Agresywny)</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Zysk %</label>
+                            <input type="number" id="cfdP" value="12.0" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Spread %</label>
+                            <input type="number" id="cfdS" value="0.05" step="0.01" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-500">Swap roczny % (Overnight)</label>
+                        <input type="number" id="cfdSwap" value="4.5" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                    </div>
+
+                    <h4 class="font-bold border-b border-white/10 pb-2 pt-4 mb-4">Instrument 3: Złoto Fizyczne</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Zysk %</label>
+                            <input type="number" id="goldP" value="4.0" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase text-slate-500">Spread %</label>
+                            <input type="number" id="goldS" value="5.0" step="0.1" class="w-full bg-slate-900 rounded p-1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wykres i Analiza -->
+                <div class="lg:col-span-3 space-y-8">
+                    <div class="bg-slate-950 p-6 rounded-3xl border border-white/5 shadow-inner">
+                        <canvas id="megaChart" height="150"></canvas>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500">
+                            <h5 class="text-xs uppercase text-slate-500 mb-2">Wynik Netto ETF</h5>
+                            <p class="text-2xl font-black text-white" id="valETF">0 PLN</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Podatek płacony po <span class="resYears">20</span> latach.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-red-500">
+                            <h5 class="text-xs uppercase text-slate-500 mb-2">Wynik Netto CFD</h5>
+                            <p class="text-2xl font-black text-white" id="valCFD">0 PLN</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Podatek roczny + wysoki koszt Swap.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-yellow-500">
+                            <h5 class="text-xs uppercase text-slate-500 mb-2">Wynik Złoto</h5>
+                            <p class="text-2xl font-black text-white" id="valGold">0 PLN</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Potężny spread na wejściu (marża dealera).</p>
+                        </div>
+                    </div>
+
+                    <div class="math-box bg-slate-900">
+                        <h4 class="font-bold text-white mb-4">Matematyczna dedukcja efektu "Tarcia":</h4>
+                        <div class="grid md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <p class="font-semibold text-brand-accent mb-1">Równanie Realnego Zysku CFD:</p>
+                                <p>$$p_{eff} = (p_{base} - p_{swap}) \cdot (1 - T)$$</p>
+                                <p class="mt-2 opacity-60">Zauważ, że Swap jest odejmowany *przed* opodatkowaniem tylko w przypadku rozliczania kosztów uzyskania przychodu.</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-brand-accent mb-1">Wpływ Spreadu (Koszt jednorazowy):</p>
+                                <p>$$K_{1} = K_0 \cdot (1 - \text{spread}) \cdot (1+p)^1$$</p>
+                                <p class="mt-2 opacity-60">Spread działa jak ujemny pierwszy wyraz ciągu, który drastycznie obniża bazę dla wszystkich kolejnych potęg.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja 4: Analiza Ryzyk (Puste miejsca dla Ciebie) -->
+    <section id="wnioski" class="py-24 bg-brand-light/30">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12">Analiza Poza-Matematyczna (Słownik Pojęć)</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-6 border border-white/5 rounded-xl">
+                    <h4 class="text-brand-accent font-bold mb-4 italic">Psychologia Straty</h4>
+                    <p class="text-sm text-slate-400">Dlaczego ciąg geometryczny w dół (obsunięcie kapitału o 50%) wymaga wzrostu o 100% (ciąg w górę) aby wyjść na zero?</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl">
+                    <h4 class="text-brand-accent font-bold mb-4 italic">Zmienna Stopa (Vol)</h4>
+                    <p class="text-sm text-slate-400">Wzór na średnią geometryczną vs arytmetyczną. Dlaczego zmienność rynku obniża realny wynik portfela?</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl">
+                    <h4 class="text-brand-accent font-bold mb-4 italic">Ryzyko Kontrahenta</h4>
+                    <p class="text-sm text-slate-400">Matematyka nie uwzględnia upadku brokera. Rozróżnienie między własnością akcji a kontraktem na różnicę kursową.</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl">
+                    <h4 class="text-brand-accent font-bold mb-4 italic">Horyzont Zdarzeń</h4>
+                    <p class="text-sm text-slate-400">Zależność między wiekiem inwestora a ryzykiem. Matematyczne podejście do optymalizacji portfela Markowitza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-slate-600 text-xs">
+        <p>&copy; 2024 Prezentacja Matematyczna - Modelowanie Zjawisk Finansowych.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.color = '#64748b';
+            Chart.defaults.font.family = 'Inter';
+
+            // Theory Graph
+            const ctxTheory = document.getElementById('theoryGraph').getContext('2d');
+            new Chart(ctxTheory, {
+                type: 'line',
+                data: {
+                    labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    datasets: [{
+                        label: 'Wzrost Eksponencjalny e^x',
+                        data: [1, 2.71, 7.38, 20.08, 54.59, 148.41, 403.42, 1096, 2980, 8103, 22026],
+                        borderColor: '#10b981',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: { 
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { display: false }, x: { grid: { display: false } } }
+                }
+            });
+
+            // Mega-Calculator Logic
+            const megaCtx = document.getElementById('megaChart').getContext('2d');
+            let megaChart = new Chart(megaCtx, {
+                type: 'line',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    hover: { mode: 'index', intersect: false },
+                    plugins: { 
+                        tooltip: { 
+                            mode: 'index', 
+                            intersect: false,
+                            callbacks: {
+                                label: function(c) { return c.dataset.label + ': ' + Math.round(c.raw).toLocaleString() + ' PLN'; }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            function runSimulation() {
+                const k0 = parseFloat(document.getElementById('mK0').value);
+                const years = parseInt(document.getElementById('mYears').value);
+                const tax = 0.19;
+
+                // ETF Params
+                const pETF = parseFloat(document.getElementById('etfP').value) / 100;
+                const sETF = parseFloat(document.getElementById('etfS').value) / 100;
+
+                // CFD Params
+                const pCFD = parseFloat(document.getElementById('cfdP').value) / 100;
+                const sCFD = parseFloat(document.getElementById('cfdS').value) / 100;
+                const swapCFD = parseFloat(document.getElementById('cfdSwap').value) / 100;
+
+                // Gold Params
+                const pGold = parseFloat(document.getElementById('goldP').value) / 100;
+                const sGold = parseFloat(document.getElementById('goldS').value) / 100;
+
+                document.getElementById('mYearsVal').innerText = years;
+                document.querySelectorAll('.resYears').forEach(el => el.innerText = years);
+
+                let labels = [];
+                let dsETF = [];
+                let dsCFD = [];
+                let dsGold = [];
+
+                // Simulation loop
+                // Initial costs (Spread)
+                let currentCFD = k0 * (1 - sCFD);
+                let currentGold = k0 * (1 - sGold);
+                // ETF is calculated differently (tax on exit)
+
+                for (let i = 0; i <= years; i++) {
+                    labels.push('Rok ' + i);
+
+                    // 1. ETF (Tax at exit)
+                    let grossETF = (k0 * (1 - sETF)) * Math.pow(1 + pETF, i);
+                    let profitETF = Math.max(0, grossETF - k0);
+                    dsETF.push(k0 + (grossETF - k0 > 0 ? profitETF * (1 - tax) : (grossETF - k0)));
+
+                    // 2. CFD (Yearly Tax + Swap)
+                    if (i > 0) {
+                        let yearlyProfit = currentCFD * (pCFD - swapCFD);
+                        let taxedProfit = yearlyProfit > 0 ? yearlyProfit * (1 - tax) : yearlyProfit;
+                        currentCFD += taxedProfit;
+                    }
+                    dsCFD.push(currentCFD);
+
+                    // 3. Gold (Pure price move, spread already paid)
+                    dsGold.push(currentGold * Math.pow(1 + pGold, i));
+                }
+
+                document.getElementById('valETF').innerText = Math.round(dsETF[years]).toLocaleString() + ' PLN';
+                document.getElementById('valCFD').innerText = Math.round(dsCFD[years]).toLocaleString() + ' PLN';
+                document.getElementById('valGold').innerText = Math.round(dsGold[years]).toLocaleString() + ' PLN';
+
+                megaChart.data.labels = labels;
+                megaChart.data.datasets = [
+                    {
+                        label: 'ETF (Fizyczny, Odroczony Podatek)',
+                        data: dsETF,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'CFD (Dźwignia/Swap, Podatek Roczny)',
+                        data: dsCFD,
+                        borderColor: '#ef4444',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Złoto (Fizyczne, Wysoki Spread)',
+                        data: dsGold,
+                        borderColor: '#f59e0b',
+                        tension: 0.3
+                    }
+                ];
+                megaChart.update();
+            }
+
+            // Listeners
+            const inputs = ['mK0', 'mYears', 'etfP', 'etfS', 'cfdP', 'cfdS', 'cfdSwap', 'goldP', 'goldS'];
+            inputs.forEach(id => document.getElementById(id).addEventListener('input', runSimulation));
+
+            runSimulation();
+        });
+    </script>
+</body>
+</html>
